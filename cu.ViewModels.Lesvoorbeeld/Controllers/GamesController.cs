@@ -1,4 +1,5 @@
 ﻿using cu.ViewModels.Core.Repositories;
+using cu.ViewModels.Lesvoorbeeld.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace cu.ViewModels.Lesvoorbeeld.Controllers
@@ -19,10 +20,21 @@ namespace cu.ViewModels.Lesvoorbeeld.Controllers
         public IActionResult Info(int id)
         {
             //get the game with id
+            var game = _gamerepository.GetGames().FirstOrDefault(g => g.Id == id);
             //check if null
-            //fill the model
+            if(game == null)
+            {
+                return NotFound();
+            }
+            //fill the viewmodel
+            var gamesInfoViewModel = new GamesInfoViewModel
+            {
+                Id = game.Id,
+                Title = game.Title,
+                DeveloperName = game.Developer.Name
+            };
             //pass to the view
-            return View();
+            return View(gamesInfoViewModel);
         }
     }
 }
