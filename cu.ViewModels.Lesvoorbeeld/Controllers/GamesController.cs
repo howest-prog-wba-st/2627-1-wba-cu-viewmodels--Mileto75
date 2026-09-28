@@ -16,5 +16,13 @@ namespace cu.ViewModels.Lesvoorbeeld.Controllers
             ViewBag.PageTitle = "Our new Games";
             return View(games);
         }
+        public IActionResult Info(int id)
+        {
+            //get the game with id
+            //check if null
+            //fill the model
+            //pass to the view
+            return View();
+        }
     }
 }
