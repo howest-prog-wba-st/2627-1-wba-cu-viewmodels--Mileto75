@@ -1,0 +1,7 @@
+﻿
+@* <h3>@ViewData["PageTitle"]</h3> *@
+<h3>@ViewBag.PageTitle</h3>
+@foreach(var game in games)
+{
+    @game.Title<br>
+}
