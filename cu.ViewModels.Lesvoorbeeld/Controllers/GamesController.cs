@@ -9,13 +9,22 @@ namespace cu.ViewModels.Lesvoorbeeld.Controllers
         private readonly GameRepository _gamerepository = new();
         public IActionResult Index()
         {
-            //get the games
+            //get the game titles and show them to the user
             var games = _gamerepository.GetGames();
+            //put in the view
+            var gamesIndexViewModel = new GamesIndexViewModel();
+            gamesIndexViewModel.Titles = new();
+            //projection/transformation
+            foreach(var game in games)
+            {
+                gamesIndexViewModel.Titles.Add(game.Title);
+            }
             //pass to the view
+            return View(gamesIndexViewModel);
             //ViewData dictionary to pass data to the view
-            ViewData["PageTitle"] = "Our Games";
-            ViewBag.PageTitle = "Our new Games";
-            return View(games);
+            //ViewData["PageTitle"] = "Our Games";
+            //ViewBag.PageTitle = "Our new Games";
+            //return View(games);
         }
         public IActionResult Info(int id)
         {
@@ -27,6 +36,7 @@ namespace cu.ViewModels.Lesvoorbeeld.Controllers
                 return NotFound();
             }
             //fill the viewmodel
+            //projection/tranformation
             var gamesInfoViewModel = new GamesInfoViewModel
             {
                 Id = game.Id,
