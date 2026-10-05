@@ -1,7 +1,11 @@
-﻿
-@* <h3>@ViewData["PageTitle"]</h3> *@
-<h3>@ViewBag.PageTitle</h3>
-@* @foreach(var game in games)
-{
-    @game.Title<br>
-} *@
+﻿@model GamesIndexViewModel
+
+<h3>@Model.PageTitle</h3>
+<div class="row">
+    @foreach(var title in Model.Titles)
+    {
+        <div class="col text-center col-2 border border-1 m-2">
+            @title
+        </div>
+    }
+</div>

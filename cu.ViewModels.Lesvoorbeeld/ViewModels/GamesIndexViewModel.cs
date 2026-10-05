@@ -3,6 +3,7 @@
     public class GamesIndexViewModel
     {
         //a list of game titles
-        public List<string> Titles { get; set; }
+        public IEnumerable<string> Titles { get; set; }
+        public string PageTitle { get; set; }
     }
 }

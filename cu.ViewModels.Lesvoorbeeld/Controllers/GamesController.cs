@@ -10,21 +10,33 @@ namespace cu.ViewModels.Lesvoorbeeld.Controllers
         public IActionResult Index()
         {
             //get the game titles and show them to the user
-            var games = _gamerepository.GetGames();
+            //var games = _gamerepository.GetGames();
             //put in the view
-            var gamesIndexViewModel = new GamesIndexViewModel();
-            gamesIndexViewModel.Titles = new();
+            //var gamesIndexViewModel = new GamesIndexViewModel();
+
+            //gamesIndexViewModel.Titles = new();
             //projection/transformation
-            foreach(var game in games)
-            {
-                gamesIndexViewModel.Titles.Add(game.Title);
-            }
+            //old Skool
+            //foreach(var game in games)
+            //{
+            //    gamesIndexViewModel.Titles.Add(game.Title);
+            //}
+            //new school linq using select to project/transform
             //pass to the view
-            return View(gamesIndexViewModel);
+            //set the page title
             //ViewData dictionary to pass data to the view
             //ViewData["PageTitle"] = "Our Games";
             //ViewBag.PageTitle = "Our new Games";
             //return View(games);
+            //object initializer
+            var gamesIndexViewModel = new GamesIndexViewModel
+            {
+                Titles = _gamerepository
+                .GetGames()
+                .Select(g => g.Title),
+                PageTitle = "Our games"
+            };
+            return View(gamesIndexViewModel);
         }
         public IActionResult Info(int id)
         {
