@@ -31,9 +31,13 @@ namespace cu.ViewModels.Lesvoorbeeld.Controllers
             //object initializer
             var gamesIndexViewModel = new GamesIndexViewModel
             {
-                Titles = _gamerepository
+                Games = _gamerepository
                 .GetGames()
-                .Select(g => g.Title),
+                .Select(g => new GamesInfoViewModel 
+                {
+                    Id = g.Id,
+                    Title = g.Title,
+                }),
                 PageTitle = "Our games"
             };
             return View(gamesIndexViewModel);
