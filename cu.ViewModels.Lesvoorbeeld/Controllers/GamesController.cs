@@ -33,10 +33,10 @@ namespace cu.ViewModels.Lesvoorbeeld.Controllers
             {
                 Games = _gamerepository
                 .GetGames()
-                .Select(g => new GamesInfoViewModel 
+                .Select(g => new BaseViewModel 
                 {
                     Id = g.Id,
-                    Title = g.Title,
+                    Value = g.Title,
                 }),
                 PageTitle = "Our games"
             };
@@ -56,7 +56,7 @@ namespace cu.ViewModels.Lesvoorbeeld.Controllers
             var gamesInfoViewModel = new GamesInfoViewModel
             {
                 Id = game.Id,
-                Title = game.Title,
+                Value = game.Title,
                 DeveloperName = game.Developer.Name
             };
             //pass to the view
